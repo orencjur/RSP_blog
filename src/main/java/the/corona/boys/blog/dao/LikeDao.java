@@ -12,10 +12,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Objects;
 
-/**
- *
- * @author Amy
- */
 
 @Repository
 public class LikeDao extends BaseDao<Like> {

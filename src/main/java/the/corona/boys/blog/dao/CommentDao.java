@@ -12,10 +12,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Objects;
 
-/**
- *
- * @author Amy
- */
 
 @Repository
 public class CommentDao extends BaseDao<Comment>{
@@ -27,16 +23,14 @@ public class CommentDao extends BaseDao<Comment>{
     public List<Comment> findAll() {
         return em.createQuery("SELECT c FROM Comment c", Comment.class).getResultList();
     }
-    
+    /*
     public List<Comment> findAll(Article article) {
         Objects.requireNonNull(article);
-        return em.createNamedQuery("Comment.findByArticle", Comment.class).setParameter("article", article)
-                 .getResultList();
+        return em.createQuery("SELECT c FROM Comment c inner join c.article ca WHERE ca= ?1", Comment.class).setParameter(1,article).getResultList();
     }
     
      public Comment findAll(Integer Id){
         Objects.requireNonNull(Id);
-        return em.createNamedQuery("Comment.findById", Comment.class).setParameter("id", Id)
-                 .getSingleResult();
-    }
+        return em.createQuery("SELECT c FROM Comment c WHERE c.id = ?1", Comment.class).setParameter(1, Id).getSingleResult();
+    }*/
 }

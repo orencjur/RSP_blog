@@ -8,10 +8,7 @@ package the.corona.boys.blog.dao;
 import java.util.Collection;
 import java.util.List;
 
-/**
- *
- * @author Amy
- */
+
 
 /**
  * Base interface for data access objects.

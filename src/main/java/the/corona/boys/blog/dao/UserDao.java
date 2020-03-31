@@ -10,10 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 
-/**
- *
- * @author Amy
- */
+
 @Repository
 public class UserDao extends BaseDao<User> {
 

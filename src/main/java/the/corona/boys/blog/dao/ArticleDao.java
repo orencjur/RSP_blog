@@ -14,10 +14,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-/**
- *
- * @author Amy
- */
+
 
 @Repository
 public class ArticleDao extends BaseDao<Article>{
@@ -31,27 +28,26 @@ public class ArticleDao extends BaseDao<Article>{
         return em.createQuery("SELECT a FROM Article a WHERE NOT a.removed", Article.class).getResultList();
     }
     
-    public List<Article> findAll(Topic topic) {
+    public List<Article> findByTopic(Topic topic) {
         Objects.requireNonNull(topic);
-        return em.createNamedQuery("Article.findByTopic", Article.class).setParameter("topic", topic)
-                 .getResultList();
+        return em.createQuery("SELECT a FROM Article a WHERE :topic MEMBER OF a.topics AND NOT a.removed", Article.class).getResultList();
     }
     
-    public List<Article> findAll(LocalDateTime date) {
+    public List<Article> findByDate(LocalDateTime date) {
         Objects.requireNonNull(date);
-        return em.createNamedQuery("Article.findByDate", Article.class).setParameter("date", date)
+        return em.createQuery("SELECT a FROM Article a WHERE a.created = ?1", Article.class).setParameter(1, date)
                  .getResultList();
     }
      
-    public List<Article> findAll(String title){
+    public List<Article> findByTitle(String title){
         Objects.requireNonNull(title);
-        return em.createNamedQuery("Article.findByTitle", Article.class).setParameter("title", title)
+        return em.createQuery("SELECT a FROM Article a WHERE a.title = ?1", Article.class).setParameter(1, title)
                  .getResultList();
     }
     
-      public Article findAll(Integer Id){
+      public Article findById(Integer Id){
         Objects.requireNonNull(Id);
-        return em.createNamedQuery("Article.findById", Article.class).setParameter("id", Id)
+        return em.createQuery("SELECT a FROM Article a WHERE a.id = ?1", Article.class).setParameter(1, Id)
                  .getSingleResult();
     }
     
